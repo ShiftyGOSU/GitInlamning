@@ -1,0 +1,75 @@
+https://github.com/ShiftyGOSU/GitInlamning 
+
+Siktar på VG
+
+--När använder man add respektive commit?
+
+add lägger till filen till stagin area. 
+commit lägger allt till locala repositoryt 
+
+--Vad är pull repektive push?
+
+pull skapar en copia av ett repository online på din dator
+push skickar upp allt som man commitat till repositoryt online
+
+--När använder man log respektive status?
+
+använder log för att se all commit history
+använder status för att se läget på vårt working directory
+och se alla filer som är untracked, staged eller unstaged.
+
+--Hur kan man formulera sig i sina commit-meddelanden?
+
+i meddelandet ska man förklara vad commiten kommer göra
+
+VG:
+
+______________________________________________________
+Git revert:
+om man har commitat kan man kopiera commitID
+och skriva git revert commitID så försvinner den commiten fast den commitar ändringen direkt
+
+git revert -n commitID, de ändrar tbx de du har hade gjort i den commiten
+men den commitar inte den direkt utan den blir modified.
+
+git revert tar inte bort commiten utan den skapar en ny commit som ogör de som hände i commiten du reverta.
+så om man bara vill ogöra en commit som hänt så andvänder man git revert
+
+Har man pushat något som andra kanske sen jobbar med bör du använda revert
+
+_______________________________________________________
+Git reset:
+om jag vill gå tbx till en tidigare så kopierar jag commitID som jag vill tbx till
+git reset --hard commitID så försvinner de commitsen efter denna commitID permanent och du är tbx där du va
+
+git reset --hard använder man när man vill gå tbx till en äldre version och deleta allt som hänt efter den.
+skriver över även working directoryt med innehållet från commiten du resetat till.
+kan också använda git reset om du vill ta bort alla commits till en punk för att sen commita allt på en gång
+så man får en commit
+
+________________________________________________________
+Exempel:
+skapa en ny branch git checkout -b test (skapade en kopia av main branch)
+Om jag har denna uppgiften som exempel så har jag:
+gitlog:
+Add run_game.sh
+
+c5bebf2 Change console to Scanner
+
+Change object values
+
+Add getReply method
+
+dbcb164 Add start of game
+
+om jag bara vill ta bort commit "Change console to Scanner"
+använder jag git revert c5bebf2
+nu är min kod tbx där jag hade console istället för scanner och en ny commit har skapats som heter Revert "Change console to Scanner"
+
+om jag inser att flera av mina senaste commits är dåliga eller av någon anledning vill gå tbx och ta bort alla senaste commitsen.
+använder jag git reset --hard dbcb164
+nu är mina filer tbx till stadiet dem va vid Add start of game och det är senaste commiten.
+
+går jag tbx till main branch git checkout main så är allt kvar.
+
+___________________________________________________________________
